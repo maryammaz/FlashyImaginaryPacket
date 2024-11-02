@@ -1,5 +1,5 @@
 ---
-# 📒✨ Flashy Imaginary Packet ✨📒
+# 📒✨ Title to be added ✨📒
 
 Welcome to our Dork Diaries-Inspired project! 🌸 This website aims to capture the fun sketchy spirit of Dork Diaries by offering a variety of small interactive games, each accessible via unique icons across the site. 🌈💖
 
