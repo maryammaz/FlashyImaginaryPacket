@@ -45,3 +45,33 @@ def ai_move():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+# Route for the homepage
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# Route for the Unscramble game
+@app.route('/unscramble', methods=['GET', 'POST'])
+def play_unscramble():
+    if request.method == 'POST':
+        user_answer = request.form.get('user_answer')
+        correct_word = request.form.get('correct_word')
+
+        # Check if the player's answer matches the correct word
+        if unscramble.check_answer(user_answer, correct_word):
+            result = "Correct! You unscrambled the word."
+        else:
+            result = "Incorrect. Try again!"
+
+        # Get a new scrambled word for the next round
+        scrambled_word, new_word = unscramble.get_scrambled_word()
+        return render_template('unscramble.html', scrambled_word=scrambled_word, correct_word=new_word, result=result)
+
+    # Initial GET request: Display a scrambled word
+    scrambled_word, word = unscramble.get_scrambled_word()
+    return render_template('unscramble.html', scrambled_word=scrambled_word, correct_word=word)
+
+if __name__ == '__main__':
+    app.run(debug=True)
