@@ -73,5 +73,10 @@ def play_unscramble():
     scrambled_word, word = unscramble.get_scrambled_word()
     return render_template('unscramble.html', scrambled_word=scrambled_word, correct_word=word)
 
+# Route for the doodle game
+@app.route("/doodle")
+def doodle():
+    return render_template("doodle.html")  # Load the doodle game HTML page
+
 if __name__ == '__main__':
     app.run(debug=True)
