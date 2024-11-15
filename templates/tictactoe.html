@@ -1,4 +1,4 @@
-<!-- Game Mode Selection (Place this at the beginning) -->
+<!-- Game Mode Selection -->
 <label for="game_mode">Choose Game Mode:</label>
 <select id="game_mode">
     <option value="two_player">Two Player</option>
@@ -11,10 +11,8 @@
     <meta charset="UTF-8">
     <title>Tic Tac Toe</title>
     <style>
-        .board { display: grid; grid-template-columns:
-repeat(3, 100px); gap: 5px; }
-        .cell { width: 100px; height: 100px; font-size:
-2em; text-align: center; border: 1px solid #000; cursor: pointer; }
+        .board { display: grid; grid-template-columns: repeat(3, 100px); gap: 5px; }
+        .cell { width: 100px; height: 100px; font-size: 2em; text-align: center; border: 1px solid #000; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -30,6 +28,9 @@ repeat(3, 100px); gap: 5px; }
         <div class="cell" onclick="makeMove(2, 1)"></div>
         <div class="cell" onclick="makeMove(2, 2)"></div>
     </div>
+
+    <!-- Reset button -->
+    <button onclick="resetGame()">Reset Game</button>
 
     <!-- Link to JavaScript file -->
     <script src="/static/tic_tac_toe.js"></script>

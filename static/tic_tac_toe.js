@@ -2,19 +2,14 @@ let gameMode = "two_player";  // Default to two-player
 
 // Update game mode based on user selection
 document.getElementById("game_mode").addEventListener("change", (e) => {
-    gameMode = e.target.value;  // Set game mode to player's selection
+    gameMode = e.target.value;
 });
 
 function makeMove(row, col) {
-    // Send the player's move along with the game mode
     fetch("/move", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-            row: row, 
-            col: col, 
-            game_mode: gameMode // Include game mode in request
-        })
+        body: JSON.stringify({ row: row, col: col, game_mode: gameMode })
     })
     .then(response => response.json())
     .then(data => updateBoard(data.board));
@@ -25,24 +20,17 @@ function updateBoard(board) {
     cells.forEach((cell, index) => {
         const row = Math.floor(index / 3);
         const col = index % 3;
-        const symbol = board[row][col] === "X" ? "💖" :
-                       board[row][col] === "O" ? "🌟" : "";
+        const symbol = board[row][col] === "X" ? "💖" : board[row][col] === "O" ? "🌟" : "";
         cell.textContent = symbol;
     });
 }
 
-// Function to handle AI move
-function aiMove() {
-    // Logic for AI to make a move (random selection of available move)
-    fetch("/move", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            row: aiRow, // AI move row
-            col: aiCol, // AI move column
-            game_mode: gameMode // Ensure game mode is included
-        })
-    })
-    .then(response => response.json())
-    .then(data => updateBoard(data.board));
+// Function to reset the game
+function resetGame() {
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach(cell => cell.textContent = "");  // Clear UI
+
+    fetch("/reset", { method: "POST" })  // Server reset
+        .then(response => response.json())
+        .then(data => console.log("Game reset on server"));
 }
