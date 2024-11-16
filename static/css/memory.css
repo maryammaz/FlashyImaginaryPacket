@@ -1,0 +1,66 @@
+/* Game board layout */
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Four cards per row */
+    gap: 10px; /* Spacing between cards */
+    max-width: 400px; /* Adjust to fit the new card size */
+    margin: 20px auto; /* Center the game board */
+}
+
+/* Individual card styles */
+.card {
+    position: relative;
+    width: 80px; /* Adjusted width for a rectangular look */
+    height: 120px; /* Adjusted height for a rectangular look */
+    background-color: hotpink; /* Hot pink background for card back */
+    border-radius: 10px; /* Smooth rounded corners */
+    cursor: pointer; /* Pointer cursor for interactivity */
+    perspective: 1000px; /* Enables 3D flip effect */
+}
+
+/* Ensuring the image fits inside the card */
+.card img {
+    width: 100%; /* Ensures the image fills the card */
+    height: 100%; /* Ensures the image fills the card */
+    object-fit: cover; /* Prevent distortion of the image */
+    position: absolute; /* Positioned for flipping effect */
+    backface-visibility: hidden; /* Hides the back of the card during flip */
+    transition: transform 0.4s ease; /* Smooth flipping transition */
+}
+
+/* Card front initially hidden */
+.card .card-front {
+    transform: rotateY(180deg); /* Card front hidden initially */
+}
+
+/* Card flipped (showing front) */
+.card.flip .card-front {
+    transform: rotateY(0); /* Rotate the card front to show it */
+}
+
+/* Card flip effect */
+.card.flip {
+    transform: rotateY(180deg); /* Flip the card */
+}
+
+/* Matched cards */
+.card.matched {
+    background-color: #95a5a6; /* Dim matched cards */
+    pointer-events: none; /* Disable interactions with matched cards */
+}
+#resetButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: hotpink; /* Hot pink button */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#resetButton:hover {
+    background-color: #ff66b2; /* Lighter pink when hovered */
+}
