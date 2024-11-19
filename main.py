@@ -47,6 +47,11 @@ def play_unscramble():
     scrambled_word, word = get_scrambled_word()
     return render_template('unscramble.html', scrambled_word=list(scrambled_word), correct_word=word)
 
+# Route for the puzzle games
+@app.route("/puzzle_game")
+def puzzle_game():
+    return render_template("puzzle.html")
+
 # Route for Tic Tac Toe move handling
 @app.route("/move", methods=["POST"])
 def make_move():

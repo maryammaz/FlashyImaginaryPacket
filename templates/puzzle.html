@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dork Diaries Puzzle Game</title>
+    <style>
+        #puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(4, 100px); /* Adjust number of columns based on puzzle size */
+            grid-gap: 2px;
+            margin-top: 20px;
+        }
+        .puzzle-piece {
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dork Diaries Puzzle Game</h1>
+    <p>Select a puzzle to start:</p>
+    <button onclick="startPuzzle(1)">Puzzle 1</button>
+    <button onclick="startPuzzle(2)">Puzzle 2</button>
+    <button onclick="startPuzzle(3)">Puzzle 3</button>
+    
+    <div id="puzzle-container"></div>
+    <script src="puzzle.js"></script>
+</body>
+</html>
