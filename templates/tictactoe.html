@@ -1,22 +1,82 @@
-<!-- Game Mode Selection -->
-<label for="game_mode">Choose Game Mode:</label>
-<select id="game_mode">
-    <option value="two_player">Two Player</option>
-    <option value="one_player">One Player (vs AI)</option>
-</select>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Tic Tac Toe</title>
     <style>
-        .board { display: grid; grid-template-columns: repeat(3, 100px); gap: 5px; }
-        .cell { width: 100px; height: 100px; font-size: 2em; text-align: center; border: 1px solid #000; cursor: pointer; }
+        /* Set background color to pink and text color to white */
+        body {
+            background-color: pink;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        /* Style for the game board */
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 5px;
+            justify-content: center;
+            margin: 20px auto;
+        }
+
+        /* Style for each cell in the board */
+        .cell {
+            width: 100px;
+            height: 100px;
+            font-size: 2em;
+            text-align: center;
+            border: 1px solid #fff;
+            background-color: rgba(255, 255, 255, 0.3); /* Slightly transparent white */
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Change cell color on hover */
+        .cell:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Style for the reset button */
+        button {
+            background-color: white;
+            color: pink;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Change button style on hover */
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Align dropdown and label */
+        label, select {
+            display: block;
+            margin: 10px auto;
+            font-size: 1em;
+        }
+
+        select {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <h1>Tic Tac Toe</h1>
+    <label for="game_mode">Choose Game Mode:</label>
+    <select id="game_mode">
+        <option value="two_player">Two Player</option>
+        <option value="one_player">One Player (vs AI)</option>
+    </select>
+
     <div class="board">
         <div class="cell" onclick="makeMove(0, 0)"></div>
         <div class="cell" onclick="makeMove(0, 1)"></div>
@@ -29,7 +89,6 @@
         <div class="cell" onclick="makeMove(2, 2)"></div>
     </div>
 
-    <!-- Reset button -->
     <button onclick="resetGame()">Reset Game</button>
 
     <!-- Link to JavaScript file -->
