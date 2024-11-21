@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dork Diaries Puzzle Game</title>
     <style>
+        body {
+            background-color: #fce4ec; /* Light pink */
+        }
+        
         #puzzle-container {
             display: grid;
             grid-template-columns: repeat(4, 100px); /* Adjust number of columns based on puzzle size */
@@ -17,6 +21,15 @@
             cursor: pointer;
             border: 1px solid #ddd;
         }
+        
+        button {
+            background-color: #f5a7c0; /* Slightly darker pink */
+        }
+        
+        button:hover {
+            background-color: #f27d96; /* Even darker pink on hover */
+        }
+        
         .hidden {
             visibility: hidden;
         }
@@ -28,6 +41,8 @@
     <button onclick="startPuzzle(1)">Puzzle 1</button>
     <button onclick="startPuzzle(2)">Puzzle 2</button>
     <button onclick="startPuzzle(3)">Puzzle 3</button>
+    <button onclick="startPuzzle(4)">Puzzle 4</button>
+    <button onclick="startPuzzle(5)">Puzzle 5</button>
     
     <div id="puzzle-container"></div>
     <script src="puzzle.js"></script>
