@@ -6,6 +6,8 @@
 # Log in credentials like the games he showed us
 # If we an, add sparkles to the mouse pointer.
 
+
+
 ### 1. Tic-Tac-Toe game
 # Theme: It could be customized with touches relating to the series, like using cute doodles or character icons (ie. hearts in place of X).
 # For Variation, we could have single player mode where players could compete against AI. The other option would be multiplayer mode.
