@@ -71,6 +71,8 @@
 </head>
 <body>
     <h1>Tic Tac Toe</h1>
+    <p id="status_message"></p> <!-- Added status message display -->
+
     <label for="game_mode">Choose Game Mode:</label>
     <select id="game_mode">
         <option value="two_player">Two Player</option>
@@ -93,6 +95,5 @@
 
     <!-- Link to JavaScript file -->
     <script src="{{ url_for('static', filename='js/tic_tac_toe.js') }}"></script>
-
 </body>
 </html>

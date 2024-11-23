@@ -1,4 +1,4 @@
-let gameMode = "two_player";  // Default to two-player
+let gameMode = "two_player"; // Default to two-player
 
 // Update game mode based on user selection
 document.getElementById("game_mode").addEventListener("change", (e) => {
@@ -12,7 +12,17 @@ function makeMove(row, col) {
         body: JSON.stringify({ row: row, col: col, game_mode: gameMode })
     })
     .then(response => response.json())
-    .then(data => updateBoard(data.board));
+    .then(data => {
+        updateBoard(data.board);
+        const statusMessage = document.getElementById("status_message");
+        if (data.winner) {
+            if (data.winner === "Draw") {
+                statusMessage.textContent = "It's a draw!";
+            } else {
+                statusMessage.textContent = `Player ${data.winner === "X" ? "💖" : "🌟"} wins!`; // Updated message
+            }
+        }
+    });
 }
 
 function updateBoard(board) {
@@ -28,9 +38,14 @@ function updateBoard(board) {
 // Function to reset the game
 function resetGame() {
     const cells = document.querySelectorAll(".cell");
-    cells.forEach(cell => cell.textContent = "");  // Clear UI
+    cells.forEach(cell => cell.textContent = ""); // Clear UI
 
-    fetch("/reset", { method: "POST" })  // Server reset
+    fetch("/reset", { method: "POST" }) // Server reset
         .then(response => response.json())
-        .then(data => console.log("Game reset on server"));
+        .then(data => {
+            if (data.success) {
+                const statusMessage = document.getElementById("status_message");
+                statusMessage.textContent = ""; // Clear status message
+            }
+        });
 }
