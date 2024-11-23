@@ -35,32 +35,40 @@
         button:hover {
             background-color: #f27d96; /* Even darker pink on hover */
         }
+
+        #congrats-message {
+            margin-top: 20px;
+            color: green;
+            font-size: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-<h1>Dork Diaries Puzzle Game</h1>
-<p>Select a puzzle to start:</p>
-<button onclick="startPuzzle(1)">Puzzle 1</button>
-<button onclick="startPuzzle(2)">Puzzle 2</button>
-<button onclick="startPuzzle(3)">Puzzle 3</button>
-<button onclick="startPuzzle(4)">Puzzle 4</button>
-<button onclick="startPuzzle(5)">Puzzle 5</button>
+    <h1>Dork Diaries Puzzle Game</h1>
+    <p>Select a puzzle to start:</p>
+    <button onclick="startPuzzle(1)">Puzzle 1</button>
+    <button onclick="startPuzzle(2)">Puzzle 2</button>
+    <button onclick="startPuzzle(3)">Puzzle 3</button>
+    <button onclick="startPuzzle(4)">Puzzle 4</button>
+    <button onclick="startPuzzle(5)">Puzzle 5</button>
 
-<div id="puzzle-container"></div>
+    <div id="puzzle-container"></div>
+    <div id="congrats-message"></div>
 
-<script>
-    // Puzzle data
-    const puzzleImages = [
-        "/static/images/dork_diaries_1.jpg",
-        "/static/images/dork_diaries_2.jpg",
-        "/static/images/dork_diaries_3.jpg",
-        "/static/images/dork_diaries_4.jpg",
-        "/static/images/dork_diaries_5.jpg"
-    ];
+    <script>
+        // Puzzle data
+        const puzzleImages = [
+            "/static/images/dork_diaries_1.jpg",
+            "/static/images/dork_diaries_2.jpg",
+            "/static/images/dork_diaries_3.jpg",
+            "/static/images/dork_diaries_4.jpg",
+            "/static/images/dork_diaries_5.jpg"
+        ];
 
-    const puzzlePiecesCount = [12, 15, 15, 12, 12];
-</script>
+        const puzzlePiecesCount = [12, 15, 15, 12, 12];
+    </script>
 
-<script src="/static/js/puzzle.js"></script>
+    <script src="/static/js/puzzle.js"></script>
 </body>
 </html>

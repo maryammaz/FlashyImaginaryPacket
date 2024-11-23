@@ -1,15 +1,25 @@
 let selectedPuzzleIndex = null;
 
 function startPuzzle(puzzleNumber) {
-    selectedPuzzleIndex = puzzleNumber - 1;
+    console.log(`Starting Puzzle ${puzzleNumber}`); // Debug log to ensure the function is triggered
+
+    selectedPuzzleIndex = puzzleNumber - 1; // Puzzle index starts from 0
     const puzzleImage = puzzleImages[selectedPuzzleIndex];
     const piecesCount = puzzlePiecesCount[selectedPuzzleIndex];
+
+    if (!puzzleImage || !piecesCount) {
+        console.error(`Puzzle ${puzzleNumber} is not configured properly.`);
+        return;
+    }
+
     createPuzzle(puzzleImage, piecesCount);
 }
 
 function createPuzzle(imageSrc, piecesCount) {
-    const container = document.getElementById('puzzle-container');
-    container.innerHTML = ''; // Clear previous puzzle
+    console.log(`Creating puzzle with image: ${imageSrc} and ${piecesCount} pieces`); // Debug log
+
+    const container = document.getElementById("puzzle-container");
+    container.innerHTML = ""; // Clear previous puzzle
 
     const img = new Image();
     img.src = imageSrc;
@@ -36,8 +46,8 @@ function createPuzzle(imageSrc, piecesCount) {
         const backgroundHeight = puzzlePieceHeight * puzzleHeight;
 
         for (let i = 0; i < piecesCount; i++) {
-            const piece = document.createElement('div');
-            piece.classList.add('puzzle-piece');
+            const piece = document.createElement("div");
+            piece.classList.add("puzzle-piece");
             piece.style.backgroundImage = `url(${imageSrc})`;
             piece.style.backgroundSize = `${backgroundWidth}px ${backgroundHeight}px`;
 
@@ -45,16 +55,19 @@ function createPuzzle(imageSrc, piecesCount) {
             const col = i % puzzleWidth;
 
             piece.style.backgroundPosition = `-${col * puzzlePieceWidth}px -${row * puzzlePieceHeight}px`;
-            piece.setAttribute('data-index', i);
+            piece.setAttribute("data-index", i);
             piece.draggable = true;
 
             // Attach drag-and-drop event listeners
-            piece.addEventListener('dragstart', dragStart);
-            piece.addEventListener('dragover', dragOver);
-            piece.addEventListener('drop', drop);
+            piece.addEventListener("dragstart", dragStart);
+            piece.addEventListener("dragover", dragOver);
+            piece.addEventListener("drop", drop);
 
             container.appendChild(piece);
         }
+
+        // Scramble the pieces after adding them to the container
+        scramblePieces(container);
     };
 
     img.onerror = () => {
@@ -62,9 +75,16 @@ function createPuzzle(imageSrc, piecesCount) {
     };
 }
 
+// Scramble puzzle pieces
+function scramblePieces(container) {
+    const pieces = Array.from(container.children);
+    pieces.sort(() => Math.random() - 0.5);
+    pieces.forEach((piece) => container.appendChild(piece));
+}
+
 // Drag-and-drop logic
 function dragStart(e) {
-    e.dataTransfer.setData('text', e.target.dataset.index);
+    e.dataTransfer.setData("text", e.target.dataset.index);
 }
 
 function dragOver(e) {
@@ -74,7 +94,7 @@ function dragOver(e) {
 function drop(e) {
     e.preventDefault();
 
-    const draggedIndex = e.dataTransfer.getData('text');
+    const draggedIndex = e.dataTransfer.getData("text");
     const draggedPiece = document.querySelector(`[data-index='${draggedIndex}']`);
 
     const targetIndex = e.target.dataset.index;
@@ -86,4 +106,15 @@ function drop(e) {
     const tempPosition = draggedPiece.style.backgroundPosition;
     draggedPiece.style.backgroundPosition = targetPiece.style.backgroundPosition;
     targetPiece.style.backgroundPosition = tempPosition;
+
+    // Check if the puzzle is solved
+    if (checkIfSolved()) {
+        alert("Congratulations! You solved the puzzle!");
+    }
+}
+
+// Check if the puzzle is solved
+function checkIfSolved() {
+    const pieces = Array.from(document.querySelectorAll(".puzzle-piece"));
+    return pieces.every((piece, index) => parseInt(piece.dataset.index) === index);
 }

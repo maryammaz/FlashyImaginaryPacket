@@ -43,8 +43,16 @@ function clearCanvas() {
 
 function saveDoodle() {
     doodleCount += 1;
-    clearCanvas();
+    // Save the current doodle as an image
+    const dataUrl = canvas.toDataURL('image/png'); // Converts the canvas to a PNG image
+    const link = document.createElement('a'); // Create a temporary link element
+    link.href = dataUrl; // Set the href to the image data
+    link.download = 'doodle.png'; // Set the download attribute to specify the file name
+    link.click(); // Programmatically click the link to trigger the download
 
+    clearCanvas(); // Clear the canvas after saving the doodle
+
+    // Give points every 5 doodles
     if (doodleCount % doodlesToPoints === 0) {
         points += 10;
         pointsDisplay.textContent = points;
