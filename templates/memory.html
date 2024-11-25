@@ -9,34 +9,22 @@
 <body>
     <h1>Memory Game</h1>
     <p>Flip the cards to find matching pairs!</p>
-    <div class="game-board" id="gameBoard">
-        <!-- Cards go here -->
-        <div class="card" data-name="1">
-            <img src="/static/images/card1.png" alt="Card 1" class="card-front">
-        </div>
-        <div class="card" data-name="2">
-            <img src="/static/images/card2.png" alt="Card 2" class="card-front">
-        </div>
-        <div class="card" data-name="3">
-            <img src="/static/images/card3.png" alt="Card 3" class="card-front">
-        </div>
-        <div class="card" data-name="4">
-            <img src="/static/images/card4.png" alt="Card 4" class="card-front">
-        </div>
-        <div class="card" data-name="1">
-            <img src="/static/images/card1.png" alt="Card 1" class="card-front">
-        </div>
-        <div class="card" data-name="2">
-            <img src="/static/images/card2.png" alt="Card 2" class="card-front">
-        </div>
-        <div class="card" data-name="3">
-            <img src="/static/images/card3.png" alt="Card 3" class="card-front">
-        </div>
-        <div class="card" data-name="4">
-            <img src="/static/images/card4.png" alt="Card 4" class="card-front">
-        </div>
-    </div>
-    <button id="resetButton">Reset Game</button> <!-- Reset button -->
+
+    <!-- Difficulty Selector -->
+    <label for="difficulty">Select Difficulty:</label>
+    <select id="difficulty">
+        <option value="easy">Easy (12 cards)</option>
+        <option value="medium">Medium (24 cards)</option>
+        <option value="hard">Hard (32 cards)</option>
+    </select>
+
+    <!-- Game Board -->
+    <div class="game-board" id="gameBoard"></div>
+
+    <!-- Reset Button -->
+    <button id="resetButton">Reset Game</button>
+
+    <!-- Link to JavaScript -->
     <script src="/static/js/memory.js"></script>
 </body>
 </html>
