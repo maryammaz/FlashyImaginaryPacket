@@ -1,59 +1,82 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector("#unscramble-form");
-    const resultDiv = document.querySelector("#result");
+    const words = [
+        "science", "mathlete", "geek", "comic", "robotics",
+        "nerd", "astronomy", "crush", "diary", "friend",
+        "drama", "frenemy", "journalist", "locker", "adventure",
+        "bourgeoisie", "relationship"
+    ];
+
+    let usedWords = [];
+    let currentWord = "";
+    let scrambledWord = "";
+
     const scrambledWordDiv = document.querySelector("#scrambled-word");
+    const resultDiv = document.querySelector("#result");
+    const userAnswerInput = document.querySelector("#user-answer");
+    const submitButton = document.querySelector("#submit-answer");
+    const skipButton = document.querySelector("#skip-word");
 
-    // Get the scrambled and correct words from the data attributes
-    const initialScrambledWord = scrambledWordDiv.getAttribute("data-scrambled");
-    const initialCorrectWord = scrambledWordDiv.getAttribute("data-correct");
+    // Function to scramble a word
+    function scrambleWord(word) {
+        let scrambled = word.split('');
+        do {
+            scrambled.sort(() => Math.random() - 0.5);
+        } while (scrambled.join('') === word);
+        return scrambled.join('');
+    }
 
-    // Initialize the hidden input with the correct word
-    const correctWordInput = document.querySelector("input[name='correct_word']");
-    correctWordInput.value = initialCorrectWord;
+    // Function to get a new random word
+    function getNewWord() {
+        if (usedWords.length === words.length) {
+            usedWords = []; // Reset used words when all are exhausted
+        }
 
-    // Function to update the displayed scrambled word
-    function updateScrambledWord(scrambledWord) {
-        scrambledWordDiv.innerHTML = ''; // Clear the previous cards
-        scrambledWord.split('').forEach(letter => {
-            const card = document.createElement('div');
-            card.className = 'card';
+        const availableWords = words.filter(word => !usedWords.includes(word));
+        currentWord = availableWords[Math.floor(Math.random() * availableWords.length)];
+        scrambledWord = scrambleWord(currentWord);
+        usedWords.push(currentWord);
+
+        displayScrambledWord(scrambledWord);
+    }
+
+    // Function to display the scrambled word as cards
+    function displayScrambledWord(word) {
+        scrambledWordDiv.innerHTML = ""; // Clear previous word
+        word.split("").forEach(letter => {
+            const card = document.createElement("div");
+            card.className = "card";
             card.textContent = letter;
             scrambledWordDiv.appendChild(card);
         });
     }
 
-    // Display the initial scrambled word on page load
-    updateScrambledWord(initialScrambledWord);
+    // Function to check user's answer
+    function checkAnswer(userAnswer) {
+        return userAnswer.trim().toLowerCase() === currentWord.toLowerCase();
+    }
 
-    form.addEventListener("submit", async (event) => {
-        event.preventDefault(); // Prevent page reload
-
-        const formData = new FormData(form);
-        const userAnswer = formData.get("user_answer");
-        const correctWord = formData.get("correct_word");
-
-        const response = await fetch("/unscramble_game", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ user_answer: userAnswer, correct_word: correctWord }),
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            resultDiv.textContent = data.result; // Update the result message
-
-            // If the answer is correct, update the scrambled word with a new one
-            if (data.result.includes("Correct")) {
-                updateScrambledWord(data.new_scrambled);  // Update with new scrambled word
-                form.reset();  // Optionally reset the input field after a correct answer
-            } else {
-                // If the answer is incorrect, keep the same scrambled word for retry
-                updateScrambledWord(data.new_scrambled);  // Keep the same scrambled word
-            }
+    // Event listener for submitting an answer
+    submitButton.addEventListener("click", () => {
+        const userAnswer = userAnswerInput.value;
+        if (checkAnswer(userAnswer)) {
+            resultDiv.textContent = "Correct! Here's the next word.";
+            resultDiv.style.color = "green";
+            userAnswerInput.value = ""; // Clear input field
+            getNewWord(); // Load a new word
         } else {
-            resultDiv.textContent = "An error occurred. Please try again.";
+            resultDiv.textContent = "Incorrect. Try again!";
+            resultDiv.style.color = "red";
         }
     });
+
+    // Event listener for skipping a word
+    skipButton.addEventListener("click", () => {
+        resultDiv.textContent = "Word skipped. Here's a new word.";
+        resultDiv.style.color = "blue";
+        userAnswerInput.value = ""; // Clear input field
+        getNewWord(); // Load a new word
+    });
+
+    // Initialize the game by loading the first word
+    getNewWord();
 });

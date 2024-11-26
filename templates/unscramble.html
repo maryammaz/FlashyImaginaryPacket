@@ -5,51 +5,51 @@
     <title>Dork Diary: Word Unscramble Game</title>
     <link rel="stylesheet" href="/static/css/styles.css">
     <style>
-        body { 
-            font-family: 'Comic Sans MS', cursive, sans-serif; 
-            text-align: center; 
-            background-color: ##f8bbd0 !important;
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            background-color: #f8bbd0;
             padding: 20px;
         }
         h1 { color: #333; }
-        .card { 
-            display: inline-block; 
-            padding: 15px; 
-            font-size: 24px; 
-            background-color: #f8d7da; 
-            margin: 5px; 
-            border-radius: 8px; 
-            cursor: pointer; 
+        .card {
+            display: inline-block;
+            padding: 15px;
+            font-size: 24px;
+            background-color: #f8d7da;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
             transition: transform 0.2s;
         }
-        .card:hover { 
-            transform: scale(1.1); 
+        .card:hover {
+            transform: scale(1.1);
             background-color: #f48fb1;
         }
-        .result { 
-            margin-top: 20px; 
-            font-size: 20px; 
-            color: green; 
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: green;
         }
-        .incorrect { 
-            color: red; 
+        .incorrect {
+            color: red;
         }
         form { margin-top: 20px; }
-        input[type="text"] { 
-            padding: 10px; 
-            font-size: 16px; 
-            border: 2px solid #ccc; 
-            border-radius: 4px; 
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
             width: 200px;
         }
-        button { 
-            padding: 10px 20px; 
-            font-size: 16px; 
-            background-color: #4caf50; 
-            color: white; 
-            border: none; 
-            border-radius: 4px; 
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
             margin-left: 10px;
         }
@@ -59,31 +59,21 @@
 <body>
     <h1>Dork Diary: Word Unscramble Game</h1>
     <p>Rearrange the letters to unscramble the word:</p>
-    
-    <!-- The scrambled word will be loaded dynamically by JavaScript -->
-    <div id="scrambled-word" data-scrambled="{{ scrambled_word }}" data-correct="{{ correct_word }}">
-        <!-- The letter cards will be inserted here by JavaScript -->
+
+    <!-- The scrambled word will be loaded dynamically -->
+    <div id="scrambled-word">
+        <!-- Cards will be inserted here by JavaScript -->
     </div>
 
-    <form method="POST" id="unscramble-form">
-        <input type="hidden" name="correct_word" value="{{ correct_word }}">
-        <label for="user_answer">Your Answer:</label><br><br>
-        <input type="text" id="user_answer" name="user_answer" required>
-        <button type="submit">Submit</button>
-    </form>
-
-    <!-- Display the result message -->
-    <div id="result">
-        {% if result %}
-            {% if "Correct" in result %}
-                <div class="result">{{ result }}</div>
-            {% else %}
-                <div class="result incorrect">{{ result }}</div>
-            {% endif %}
-        {% endif %}
+    <div class="container">
+        <label for="user-answer">Your Answer:</label><br><br>
+        <input type="text" id="user-answer" placeholder="Enter your guess here" required>
+        <button id="submit-answer">Submit</button>
+        <button id="skip-word">Skip</button>
     </div>
 
-    <!-- Include the external JavaScript file for handling the form submission and AJAX request -->
+    <div id="result"></div>
+
     <script src="/static/js/unscramble.js"></script>
 </body>
 </html>

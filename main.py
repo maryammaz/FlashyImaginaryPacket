@@ -3,46 +3,6 @@ import random
 
 app = Flask(__name__)
 
-    # List of words to be scrambled
-words = [
-        "science", "mathlete", "geek", "comic", "robotics",
-        "nerd", "astronomy", "crush", "diary", "friend",
-        "drama", "frenemy", "journalist", "locker", "adventure",
-        "bourgeoisie", "relationship"
-    ]
-
-used_words = []
-
-# Function to get a scrambled word
-def get_scrambled_word():
-    """
-    Generates a scrambled word and ensures it's not already used.
-    """
-    available_words = [word for word in words if word not in used_words]
-    if not available_words:  # Reset if all words are used
-        used_words.clear()
-        available_words = words
-    
-    word = random.choice(available_words)
-    scrambled = list(word)
-    random.shuffle(scrambled)
-    scrambled_word = ''.join(scrambled)
-    
-    # Ensure scrambled word isn't the same as the original
-    while scrambled_word == word:
-        random.shuffle(scrambled)
-        scrambled_word = ''.join(scrambled)
-    
-    used_words.append(word)
-    return scrambled_word, word
-
-# Function to check the answer
-def check_answer(user_answer, correct_word):
-    """
-    Validates the user's answer.
-    """
-    return user_answer.strip().lower() == correct_word.strip().lower()
-
 # Tic Tac Toe setup
 board = [["" for _ in range(3)] for _ in range(3)]
 current_player = "X"
@@ -126,33 +86,10 @@ def memory():
 def puzzle_game():
     return render_template("puzzle.html")
 
-# Unscramble game route (with AJAX support)
-@app.route("/unscramble_game", methods=['GET', 'POST'])
+# Unscramble game route
+@app.route("/unscramble_game")
 def play_unscramble():
-    if request.method == 'POST':
-        data = request.get_json()  # Get the JSON data sent from the frontend
-        user_answer = data.get("user_answer")
-        correct_word = data.get("correct_word")
-
-        if check_answer(user_answer, correct_word):
-            result = "Correct! You unscrambled the word."
-            # Get a new scrambled word for the next round
-            scrambled_word, new_correct_word = get_scrambled_word()
-        else:
-            result = "Incorrect. Try again!"
-            # Send back the same scrambled word if the answer is incorrect
-            scrambled_word = correct_word  # Keep the same scrambled word
-            new_correct_word = correct_word  # Same word as the correct one
-
-        return jsonify({
-            "result": result,
-            "new_scrambled": scrambled_word,
-            "correct_word": new_correct_word
-        })
-
-    # On GET request (initial page load)
-    scrambled_word, correct_word = get_scrambled_word()
-    return render_template("unscramble.html", scrambled_word=scrambled_word, correct_word=correct_word)
+    return render_template("unscramble.html")
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
