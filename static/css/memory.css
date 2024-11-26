@@ -1,46 +1,38 @@
 /* Game board layout */
 .game-board {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Four cards per row */
-    gap: 10px; /* Spacing between cards */
-    max-width: 400px; /* Adjust to fit the new card size */
-    margin: 20px auto; /* Center the game board */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 400px;
+    margin: 20px auto;
 }
 
 /* Individual card styles */
 .card {
     position: relative;
-    width: 80px; /* Adjusted width for a rectangular look */
-    height: 120px; /* Adjusted height for a rectangular look */
-    background-color: hotpink; /* Hot pink background for card back */
-    border-radius: 10px; /* Smooth rounded corners */
-    cursor: pointer; /* Pointer cursor for interactivity */
-    perspective: 1000px; /* Enables 3D flip effect */
+    width: 80px;
+    height: 120px;
+    background-color: hotpink;
+    border-radius: 10px;
+    cursor: pointer;
+    perspective: 1000px; /* This enables 3D transformations */
+    transform-style: preserve-3d; /* Ensures children are transformed in 3D space */
+    transition: transform 0.6s ease; /* Smooth flip */
 }
 
 /* Ensuring the image fits inside the card */
 .card img {
-    width: 100%; /* Ensures the image fills the card */
-    height: 100%; /* Ensures the image fills the card */
-    object-fit: cover; /* Prevent distortion of the image */
-    position: absolute; /* Positioned for flipping effect */
-    backface-visibility: hidden; /* Hides the back of the card during flip */
-    transition: transform 0.4s ease; /* Smooth flipping transition */
-}
-
-/* Card front initially hidden */
-.card .card-front {
-    transform: rotateY(180deg); /* Card front hidden initially */
-}
-
-/* Card flipped (showing front) */
-.card.flip .card-front {
-    transform: rotateY(0); /* Rotate the card front to show it */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    backface-visibility: hidden; /* Hide the back of the image during the flip */
+    transform: rotateY(180deg); /* This rotates the image back when the card flips */
 }
 
 /* Card flip effect */
 .card.flip {
-    transform: rotateY(180deg); /* Flip the card */
+    transform: rotateY(180deg); /* Flip the card when clicked */
 }
 
 /* Matched cards */
@@ -48,12 +40,14 @@
     background-color: #95a5a6; /* Dim matched cards */
     pointer-events: none; /* Disable interactions with matched cards */
 }
+
+/* Reset button styles */
 #resetButton {
     display: block;
     margin: 20px auto;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: hotpink; /* Hot pink button */
+    background-color: hotpink;
     color: white;
     border: none;
     border-radius: 8px;
@@ -62,5 +56,5 @@
 }
 
 #resetButton:hover {
-    background-color: #ff66b2; /* Lighter pink when hovered */
+    background-color: #ff66b2;
 }
