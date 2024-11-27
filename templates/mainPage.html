@@ -4,16 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Hub</title>
+    <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
-<h1>Welcome to the Game Hub!</h1>
+    <div class="container">
+        <h1>Welcome to the Game Hub!</h1>
 
-<!-- Buttons for each game -->
-<button onclick="window.location.href='/tictactoe_game'">Play Tic Tac Toe</button>
-<button onclick="window.location.href='/unscramble_game'">Play Unscramble</button>
-<button onclick="window.location.href='/memory_game'">Play Memory</button>
-<button onclick="window.location.href='/doodle_game'">Play Doodle</button>
-<button onclick="window.location.href='/puzzle_game'">Play Puzzle</button>
-
+        <!-- Button container for horizontal buttons -->
+        <div class="button-container">
+            <button onclick="window.location.href='/tictactoe_game'">Play Tic Tac Toe</button>
+            <button onclick="window.location.href='/unscramble_game'">Play Unscramble</button>
+            <button onclick="window.location.href='/memory_game'">Play Memory</button>
+            <button onclick="window.location.href='/doodle_game'">Play Doodle</button>
+            <button onclick="window.location.href='/puzzle_game'">Play Puzzle</button>
+        </div>
+    </div>
 </body>
 </html>

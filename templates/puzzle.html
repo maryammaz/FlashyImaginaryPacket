@@ -4,57 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dork Diaries Puzzle Game</title>
-    <style>
-        body {
-            background-color: #fce4ec; /* Light pink */
-            font-family: Arial, sans-serif;
-        }
-
-        #puzzle-container {
-            display: grid;
-            grid-gap: 2px;
-            margin-top: 20px;
-        }
-
-        .puzzle-piece {
-            width: 100px;
-            height: 100px;
-            cursor: pointer;
-            border: 1px solid #ddd;
-            background-size: cover;
-        }
-
-        button {
-            background-color: #f5a7c0; /* Slightly darker pink */
-            border: none;
-            padding: 10px 20px;
-            margin: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #f27d96; /* Even darker pink on hover */
-        }
-
-        #congrats-message {
-            margin-top: 20px;
-            color: green;
-            font-size: 20px;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="/static/css/puzzle.css"> <!-- Correct path to CSS -->
 </head>
 <body>
     <h1>Dork Diaries Puzzle Game</h1>
     <p>Select a puzzle to start:</p>
-    <button onclick="startPuzzle(1)">Puzzle 1</button>
-    <button onclick="startPuzzle(2)">Puzzle 2</button>
-    <button onclick="startPuzzle(3)">Puzzle 3</button>
-    <button onclick="startPuzzle(4)">Puzzle 4</button>
-    <button onclick="startPuzzle(5)">Puzzle 5</button>
 
+    <!-- Puzzle selection buttons -->
+    <div id="puzzle-buttons-container">
+        <button onclick="startPuzzle(1)">Puzzle 1</button>
+        <button onclick="startPuzzle(2)">Puzzle 2</button>
+        <button onclick="startPuzzle(3)">Puzzle 3</button>
+        <button onclick="startPuzzle(4)">Puzzle 4</button>
+        <button onclick="startPuzzle(5)">Puzzle 5</button>
+    </div>
+
+    <!-- Puzzle container -->
     <div id="puzzle-container"></div>
-    <div id="congrats-message"></div>
+
+    <!-- Complete message (hidden by default) -->
+    <div id="complete-message" style="display:none;">
+        <p>Nice! You completed the puzzle. Would you like to save the final picture?</p>
+        <button onclick="savePuzzleImage()">Save</button>
+        <button onclick="closeCompleteMessage()">Cancel</button>
+    </div>
+
+    <!-- Complete button below puzzle -->
+    <button onclick="showCompleteMessage()">Complete</button>
 
     <script>
         // Puzzle data

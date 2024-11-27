@@ -1,0 +1,77 @@
+/* main.css */
+
+/* Set the body to display the gradient background */
+body {
+    background: linear-gradient(#f8b7d0, #f5a7c0, #f27d96, #f07f8f, #f5b5d1); 
+    background-size: cover;  /* Ensure the background covers the whole screen */
+    background-position: center;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column;
+    text-align: center;
+    color: white;  /* Set all text to white by default */
+    position: relative;
+}
+
+/* Use a pseudo-element for the background blur effect */
+body::before {
+    content: ""; /* Empty content */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit; /* Inherit the background gradient */
+    filter: blur(8px);  /* Apply a slight blur to the background */
+    z-index: -1; /* Put the blur behind the content */
+}
+
+/* Container to hold all content so it's above the blurred background */
+.container {
+    position: relative;
+    z-index: 1;  /* Ensure content stays above the blurred background */
+}
+
+/* Styling for the heading */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: white;  /* White text for the title */
+}
+
+/* Styling for the buttons */
+button {
+    background-color: #f5a7c0; /* Light pink background for buttons */
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    color: white;  /* White text for buttons */
+}
+
+button:hover {
+    background-color: #f27d96; /* Darker pink when hovered */
+}
+
+button:focus {
+    outline: none; /* Remove focus outline */
+}
+
+button:active {
+    background-color: #f5a7c0; /* Reset button background when pressed */
+}
+
+/* Flexbox layout for the buttons */
+.button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}

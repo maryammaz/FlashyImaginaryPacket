@@ -1,0 +1,69 @@
+body {
+    background-color: #fce4ec; /* Light pink */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    flex-direction: column; /* Stack items vertically */
+    color: #333; /* Change text color to grey (dark grey) */
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 5px; /* Reduced space below the heading */
+    font-size: 2.5rem; /* Adjust font size if needed */
+}
+
+p {
+    text-align: center;
+    margin-top: 0; /* Remove default margin */
+    margin-bottom: 10px; /* Reduced space below the paragraph */
+    font-size: 1.2rem; /* Adjust font size if needed */
+}
+
+#puzzle-buttons-container {
+    display: flex;
+    flex-direction: row; /* Arrange buttons horizontally */
+    margin-bottom: 20px; /* Space between puzzle buttons and the puzzle */
+}
+
+button {
+    background-color: #f5a7c0; /* Slightly darker pink */
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #f27d96; /* Even darker pink on hover */
+}
+
+#puzzle-container {
+    display: grid;
+    grid-gap: 2px;
+    margin-top: 20px;
+    justify-content: center;
+    margin-bottom: 20px; /* Space between the puzzle and the "Complete" button */
+}
+
+.puzzle-piece {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    background-size: cover;
+}
+
+#complete-message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 16px;
+    display: none; /* Initially hidden */
+}
+
+#complete-message button {
+    margin-top: 10px;
+}

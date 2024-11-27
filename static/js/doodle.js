@@ -1,14 +1,11 @@
 const canvas = document.getElementById('doodleCanvas');
 const ctx = canvas.getContext('2d');
-const pointsDisplay = document.getElementById('points');
 const brushSizeInput = document.getElementById('brushSize');
 const brushColorInput = document.getElementById('brushColor');
 const topicDisplay = document.getElementById('randomTopic'); // Reference for the topic display
 
 let isDrawing = false;
-let points = 0;
 let doodleCount = 0;
-const doodlesToPoints = 5;
 
 // Function to generate and display a random topic
 function generateRandomTopic() {
@@ -99,11 +96,4 @@ function saveDoodle() {
     link.click(); // Programmatically click the link to trigger the download
 
     clearCanvas(); // Clear the canvas after saving the doodle
-
-    // Give points every 5 doodles
-    if (doodleCount % doodlesToPoints === 0) {
-        points += 10;
-        pointsDisplay.textContent = points;
-        alert("You earned 10 points!");
-    }
 }

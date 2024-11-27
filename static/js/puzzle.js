@@ -1,4 +1,5 @@
 let selectedPuzzleIndex = null;
+let currentPuzzleImage = ""; // Store the current puzzle image name
 
 function startPuzzle(puzzleNumber) {
     console.log(`Starting Puzzle ${puzzleNumber}`); // Debug log to ensure the function is triggered
@@ -12,6 +13,7 @@ function startPuzzle(puzzleNumber) {
         return;
     }
 
+    currentPuzzleImage = puzzleImage; // Store the image for the current puzzle
     createPuzzle(puzzleImage, piecesCount);
 }
 
@@ -106,15 +108,30 @@ function drop(e) {
     const tempPosition = draggedPiece.style.backgroundPosition;
     draggedPiece.style.backgroundPosition = targetPiece.style.backgroundPosition;
     targetPiece.style.backgroundPosition = tempPosition;
-
-    // Check if the puzzle is solved
-    if (checkIfSolved()) {
-        alert("Congratulations! You solved the puzzle!");
-    }
 }
 
-// Check if the puzzle is solved
-function checkIfSolved() {
-    const pieces = Array.from(document.querySelectorAll(".puzzle-piece"));
-    return pieces.every((piece, index) => parseInt(piece.dataset.index) === index);
+// Function to show the "Complete" message
+function showCompleteMessage() {
+    const completeMessageDiv = document.getElementById("complete-message");
+    completeMessageDiv.style.display = "block"; // Display the message
+}
+
+// Function to close the "Complete" message
+function closeCompleteMessage() {
+    const completeMessageDiv = document.getElementById("complete-message");
+    completeMessageDiv.style.display = "none"; // Hide the message
+}
+
+// Function to trigger the download of the puzzle image
+function savePuzzleImage() {
+    const imageName = currentPuzzleImage.split("/").pop(); // Extract the image file name (e.g., "dork_diaries_1.jpg")
+
+    const link = document.createElement("a");
+    link.href = currentPuzzleImage; // The image source
+    link.download = imageName; // Set the file name for downloading
+    document.body.appendChild(link);
+    link.click(); // Trigger the download
+    document.body.removeChild(link); // Remove the link after triggering download
+
+    closeCompleteMessage(); // Close the "Complete" message after saving
 }
