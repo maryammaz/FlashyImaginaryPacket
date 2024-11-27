@@ -3,11 +3,59 @@ const ctx = canvas.getContext('2d');
 const pointsDisplay = document.getElementById('points');
 const brushSizeInput = document.getElementById('brushSize');
 const brushColorInput = document.getElementById('brushColor');
+const topicDisplay = document.getElementById('randomTopic'); // Reference for the topic display
 
 let isDrawing = false;
 let points = 0;
 let doodleCount = 0;
 const doodlesToPoints = 5;
+
+// Function to generate and display a random topic
+function generateRandomTopic() {
+    const topics = [
+        "A pink scarf",
+        "A heart-shaped balloon",
+        "A blue lunchbox",
+        "A red pencil sharpener",
+        "A purple cupcake",
+        "A yellow skateboard",
+        "A green bottle of water",
+        "A pink school bus",
+        "A fluffy stuffed bunny",
+        "A rainbow hairbrush",
+        "A star-shaped photo frame",
+        "A silver bracelet",
+        "A cute diary with a lock",
+        "A golden ruler",
+        "A colorful balloon",
+        "A flower pot with daisies",
+        "A sparkly pair of mittens",
+        "A pink pair of headphones",
+        "A bright yellow comb",
+        "A white stuffed bear",
+        "A purple backpack",
+        "A purple backpack",
+        "A red ice cream cone",
+        "A polka dot umbrella",
+        "A heart-shaped cookie",
+        "A blue baseball cap",
+        "A golden star",
+        "A yellow rubber duck",
+        "A rainbow lollipop",
+        "A green jellybean",
+        "A striped beach towel",
+        "A pink bicycle",
+        "A sparkly snowflake",
+        "A cute penguin",
+        "A watermelon slice",
+        "A sparkly necklace"
+    ];
+
+    const randomIndex = Math.floor(Math.random() * topics.length);
+    const randomTopic = topics[randomIndex];
+
+    topicDisplay.textContent = `Your topic: ${randomTopic}`;
+}
 
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);

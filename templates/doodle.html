@@ -8,15 +8,28 @@
         canvas { border: 1px solid black; }
         #controls { margin-top: 10px; }
     </style>
+    <style>
+        body {
+            background-color: #FFC0CB; /* Lighter pink color */
+            color: white; /* Change text color to white */
+        }
+
+        #doodleCanvas {
+            background-color: white; /* Keeps the canvas background white */
+        }
+    </style>
 </head>
 <body>
     <h1>Doodle Game</h1>
+    <p id="randomTopic" style="font-size: 20px; font-weight: bold;">Your topic will appear here!</p> <!-- New topic display -->
+
     <p>Points: <span id="points">0</span></p>
     <canvas id="doodleCanvas" width="600" height="400"></canvas>
 
     <div id="controls">
         <button onclick="clearCanvas()">Clear Canvas</button>
         <button onclick="saveDoodle()">Save Doodle</button>
+        <button onclick="generateRandomTopic()">Generate Random Topic</button> <!-- New button -->
         <br>
         <label>Brush Size: <input type="range" id="brushSize" min="1" max="10" value="5"></label>
         <label>Brush Color: <input type="color" id="brushColor" value="#000000"></label>
