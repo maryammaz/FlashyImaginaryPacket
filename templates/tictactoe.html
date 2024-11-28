@@ -68,6 +68,9 @@
             border-radius: 5px;
         }
     </style>
+
+    <!-- Include the background music script -->
+    <script src="/static/js/backgroundMusic.js"></script>
 </head>
 <body>
     <h1>Tic Tac Toe</h1>
@@ -92,6 +95,12 @@
     </div>
 
     <button onclick="resetGame()">Reset Game</button>
+
+    <!-- Audio background music -->
+    <audio id="background-music" loop>
+        <source src="/static/audio/background.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
     <!-- Link to JavaScript file -->
     <script src="{{ url_for('static', filename='js/tic_tac_toe.js') }}"></script>

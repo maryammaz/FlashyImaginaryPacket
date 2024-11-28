@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Dork Diary: Word Unscramble Game</title>
     <link rel="stylesheet" href="/static/css/style.css">
-    <script src="/static/js/backgroundMusic.js"></script>
     <style>
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -58,14 +57,6 @@
     </style>
 </head>
 <body>
-    <audio id="background-music" loop>
-        <source src="/static/audio/background.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
-    <script>
-        window.dispatchEvent(new Event("lower-music")); // Lower volume for minigame
-    </script>
-
     <h1>Dork Diary: Word Unscramble Game</h1>
     <p>Rearrange the letters to unscramble the word:</p>
 
@@ -83,6 +74,44 @@
 
     <div id="result"></div>
 
+    <!-- Background Music -->
+    <audio id="background-music" loop autoplay>
+        <source src="/static/audio/background.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Click Sound -->
+    <audio id="click-sound">
+        <source src="/static/audio/click.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
     <script src="/static/js/unscramble.js"></script>
+    <script>
+        // Play the click sound when a button is clicked
+        document.querySelector("#submit-answer").addEventListener("click", playClickSound);
+        document.querySelector("#skip-word").addEventListener("click", playClickSound);
+
+        function playClickSound() {
+            console.log("Click sound triggered"); // Log when the click sound is triggered
+
+            var clickSound = document.getElementById('click-sound');
+            
+            if (clickSound) {
+                console.log("Click sound playing..."); // Log if the audio element exists
+                clickSound.play();
+            } else {
+                console.error("Click sound element not found.");
+            }
+        }
+
+        // Play the background music (already playing by default with 'autoplay')
+        var backgroundMusic = document.getElementById('background-music');
+
+        // Adjust the volume when transitioning to different pages
+        window.onbeforeunload = function() {
+            backgroundMusic.pause();  // Pause the music if the user navigates away
+        };
+    </script>
 </body>
 </html>

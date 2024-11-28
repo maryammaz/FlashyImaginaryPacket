@@ -1,51 +1,41 @@
-let gameMode = "two_player"; // Default to two-player
+document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("background-music");
 
-// Update game mode based on user selection
-document.getElementById("game_mode").addEventListener("change", (e) => {
-    gameMode = e.target.value;
-});
+    // Check if the audio element exists
+    if (audio) {
+        console.log("Audio element found, attempting to play...");
 
-function makeMove(row, col) {
-    fetch("/move", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ row: row, col: col, game_mode: gameMode })
-    })
-    .then(response => response.json())
-    .then(data => {
-        updateBoard(data.board);
-        const statusMessage = document.getElementById("status_message");
-        if (data.winner) {
-            if (data.winner === "Draw") {
-                statusMessage.textContent = "It's a draw!";
-            } else {
-                statusMessage.textContent = `Player ${data.winner === "X" ? "💖" : "🌟"} wins!`; // Updated message
-            }
+        // Check if the music is already playing in localStorage
+        const isPlaying = localStorage.getItem("background-music-playing");
+
+        if (!isPlaying || isPlaying === "true") {
+            audio.volume = 1.0; // Set to full volume initially
+            audio.play().catch(err => {
+                console.error("Audio playback failed:", err);
+                alert("Audio failed to load, please check your browser's autoplay settings.");
+            });
+        }
+
+        // Save audio state in localStorage
+        audio.onplay = () => localStorage.setItem("background-music-playing", "true");
+        audio.onpause = () => localStorage.setItem("background-music-playing", "false");
+    } else {
+        console.error("Audio element not found.");
+    }
+
+    // Lower the music volume when entering Tic Tac Toe game
+    window.addEventListener("lower-music", () => {
+        if (audio) {
+            console.log("Lowering volume to 30%");
+            audio.volume = 0.3; // Lower the music volume when the game page is loaded
         }
     });
-}
 
-function updateBoard(board) {
-    const cells = document.querySelectorAll(".cell");
-    cells.forEach((cell, index) => {
-        const row = Math.floor(index / 3);
-        const col = index % 3;
-        const symbol = board[row][col] === "X" ? "💖" : board[row][col] === "O" ? "🌟" : "";
-        cell.textContent = symbol;
+    // Restore the music volume
+    window.addEventListener("restore-music", () => {
+        if (audio) {
+            console.log("Restoring volume to 100%");
+            audio.volume = 1.0; // Restore volume when returning to main page
+        }
     });
-}
-
-// Function to reset the game
-function resetGame() {
-    const cells = document.querySelectorAll(".cell");
-    cells.forEach(cell => cell.textContent = ""); // Clear UI
-
-    fetch("/reset", { method: "POST" }) // Server reset
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                const statusMessage = document.getElementById("status_message");
-                statusMessage.textContent = ""; // Clear status message
-            }
-        });
-}
+});
