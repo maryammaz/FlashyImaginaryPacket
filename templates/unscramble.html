@@ -14,10 +14,10 @@
         h1 { color: #333; }
         .card {
             display: inline-block;
-            padding: 15px;
-            font-size: 24px;
+            padding: 25px; /* Increased padding to make the cards bigger */
+            font-size: 36px; /* Increased font size for better visibility */
             background-color: #f8d7da;
-            margin: 5px;
+            margin: 10px; /* Increased margin between cards */
             border-radius: 8px;
             cursor: pointer;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
@@ -60,6 +60,12 @@
     <h1>Dork Diary: Word Unscramble Game</h1>
     <p>Rearrange the letters to unscramble the word:</p>
 
+    <!-- Add line breaks -->
+    <br>
+    <br>
+    <br>
+    <br>
+
     <!-- The scrambled word will be loaded dynamically -->
     <div id="scrambled-word">
         <!-- Cards will be inserted here by JavaScript -->
@@ -96,7 +102,7 @@
             console.log("Click sound triggered"); // Log when the click sound is triggered
 
             var clickSound = document.getElementById('click-sound');
-            
+
             if (clickSound) {
                 console.log("Click sound playing..."); // Log if the audio element exists
                 clickSound.play();
