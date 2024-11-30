@@ -18,6 +18,9 @@
             background-color: white; /* Keeps the canvas background white */
         }
     </style>
+    
+    <script src="/static/js/backgroundMusic.js"></script>
+    
 </head>
 <body>
     <h1>Doodle Game</h1>
@@ -35,5 +38,11 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/doodle.js') }}"></script>
+    
+    <audio id="background-music" loop>
+        <source src="/static/audio/background.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
 </body>
 </html>
