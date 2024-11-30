@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Hub</title>
+    <!-- Link to your main.css where the DPDorkDiary font is defined -->
     <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>
@@ -18,6 +19,21 @@
             <button onclick="playClickSound(); window.location.href='/doodle_game'">Play Doodle</button>
             <button onclick="playClickSound(); window.location.href='/puzzle_game'">Play Puzzle</button>
         </div>
+    </div>
+
+    <!-- Image positioned in the top-right quadrant -->
+    <div class="sticker-container">
+        <img src="/static/images/dork_diaries_sticker_1.png" alt="Cute Sticker" class="sticker">
+    </div>
+
+    <!-- Image positioned 25% from the top and centered horizontally -->
+    <div class="second-sticker-container">
+        <img src="/static/images/dork_diaries_sticker_2.png" alt="Cute Sticker" class="second-sticker">
+    </div>
+
+    <!-- Image positioned in the bottom-left quadrant, mirrored -->
+    <div class="third-sticker-container">
+        <img src="/static/images/dork_diaries_sticker_3.png" alt="Cute Sticker" class="third-sticker">
     </div>
 
     <!-- Background Music -->
@@ -35,12 +51,12 @@
     <script>
         // Function to play the click sound
         function playClickSound() {
-            console.log("Click sound triggered"); // Log when the click sound is triggered
+            console.log("Click sound triggered");
 
             var clickSound = document.getElementById('click-sound');
-            
+
             if (clickSound) {
-                console.log("Click sound playing..."); // Log if the audio element exists
+                console.log("Click sound playing...");
                 clickSound.play();
             } else {
                 console.error("Click sound element not found.");

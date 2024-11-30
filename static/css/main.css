@@ -1,11 +1,19 @@
 /* main.css */
 
+/* Font-face rule to load the DPDorkDiary font */
+@font-face {
+    font-family: 'DPDorkDiary';
+    src: url('./fonts/Dpdorkdiary.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* Set the body to display the gradient background */
 body {
     background: linear-gradient(#f8b7d0, #f5a7c0, #f27d96, #f07f8f, #f5b5d1); 
     background-size: cover;  /* Ensure the background covers the whole screen */
     background-position: center;
-    font-family: Arial, sans-serif;
+    font-family: 'DPDorkDiary', Arial, sans-serif; /* Use the DPDorkDiary font */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,36 +44,38 @@ body::before {
     z-index: 1;  /* Ensure content stays above the blurred background */
 }
 
-/* Styling for the heading */
+/* Styling for headings */
 h1 {
+    font-family: 'DPDorkDiary', sans-serif;  /* Use the DPDorkDiary font */
     font-size: 3rem;
     margin-bottom: 20px;
-    color: white;  /* White text for the title */
+    color: white;
 }
 
-/* Styling for the buttons */
+/* Styling for buttons */
 button {
-    background-color: #f5a7c0; /* Light pink background for buttons */
+    font-family: 'DPDorkDiary', sans-serif;  /* Use the DPDorkDiary font */
+    background-color: #f5a7c0; 
     border: none;
     padding: 15px 30px;
     margin: 10px;
     cursor: pointer;
     font-size: 1.2rem;
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
-    color: white;  /* White text for buttons */
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    color: white;
 }
 
 button:hover {
-    background-color: #f27d96; /* Darker pink when hovered */
+    background-color: #f27d96;
 }
 
 button:focus {
-    outline: none; /* Remove focus outline */
+    outline: none;
 }
 
 button:active {
-    background-color: #f5a7c0; /* Reset button background when pressed */
+    background-color: #f5a7c0;
 }
 
 /* Flexbox layout for the buttons */
@@ -74,4 +84,46 @@ button:active {
     justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
+}
+
+/* CSS for the first sticker positioned in the top-right quadrant */
+.sticker-container {
+    position: absolute;
+    top: 20%;  /* Move it down a bit */
+    right: 10%; /* Move it further right */
+    transform: translate(50%, -50%); /* Center the image within the top-right quadrant */
+    z-index: 2;  /* Ensure it's above other content */
+}
+
+.sticker {
+    width: 150px;  /* Increase the size of the image */
+    height: auto;   /* Maintain aspect ratio */
+}
+
+/* CSS for the second sticker centered horizontally, 25% down vertically */
+.second-sticker-container {
+    position: absolute;
+    top: 25%; /* Position 25% from the top */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Adjust to perfectly center */
+    z-index: 1; /* Ensure it's above background, below the first sticker */
+}
+
+.second-sticker {
+    width: 150px;  /* You can adjust this size */
+    height: auto;   /* Maintain aspect ratio */
+}
+
+/* CSS for the third sticker positioned in the bottom-left quadrant, mirrored */
+.third-sticker-container {
+    position: absolute;
+    bottom: 20%; /* Keep it up from the bottom */
+    left: 15%;   /* Move it more to the right */
+    transform: translate(-50%, 50%); /* Center the image within the bottom-left quadrant */
+    z-index: 2;  /* Ensure it's above other content */
+}
+
+.third-sticker {
+    width: 350px;  /* Increased size of Sticker 3 */
+    height: auto;   /* Maintain aspect ratio */
 }
