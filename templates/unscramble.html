@@ -2,41 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Dork Diary: Word Unscramble Game</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <title>Dork Diary: Brandon's Brain Buster!</title>
     <style>
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
-            background-color: #23429e; /* Background color */
+            background-color: #23429e;
             color: white; /* Set font color to white */
             padding: 20px;
         }
-        h1 { color: white; } /* Ensure header font is white */
+
+        h1 {
+            color: white;
+        }
+
         .card {
             display: inline-block;
-            padding: 25px; /* Increased padding to make the cards bigger */
-            font-size: 36px; /* Increased font size for better visibility */
-            background-color: #87ceeb; /* Sky blue color for the card bubbles */
-            margin: 10px; /* Increased margin between cards */
-            border-radius: 8px;
+            padding: 15px; /* Adjusted padding for smaller cards */
+            font-size: 32px; /* Adjusted font size */
+            background-color: skyblue; /* Set bubble color to sky blue */
+            margin: 10px;
+            border-radius: 50%;
             cursor: pointer;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-            transition: transform 0.2s, background-color 0.2s;
+            transition: transform 0.2s;
         }
+
         .card:hover {
             transform: scale(1.1);
-            background-color: #5aa0c8; /* Darker sky blue on hover */
+            background-color: #4a90e2; /* Slightly darker blue on hover */
         }
+
         .result {
             margin-top: 20px;
             font-size: 20px;
             color: green;
         }
+
         .incorrect {
             color: red;
         }
-        form { margin-top: 20px; }
+
+        form {
+            margin-top: 20px;
+        }
+
         input[type="text"] {
             padding: 10px;
             font-size: 16px;
@@ -44,6 +54,7 @@
             border-radius: 4px;
             width: 200px;
         }
+
         button {
             padding: 10px 20px;
             font-size: 16px;
@@ -54,18 +65,37 @@
             cursor: pointer;
             margin-left: 10px;
         }
-        button:hover { background-color: #45a049; }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Image positioning for Brandon */
+        .brandon-image {
+            position: absolute;
+            top: 100px;
+            right: 90px;
+            max-width: 400px;
+        }
+
+        /* Image positioning for second Brandon image */
+        .brandon2-image {
+            position: absolute;
+            top: 100px;
+            left: 90px; /* Adjust the left value to move it further */
+            max-width: 400px;
+        }
     </style>
 </head>
 <body>
-    <h1>Dork Diary: Word Unscramble Game</h1>
+    <h1>Dork Diary: Brandon's Brain Buster!</h1>
     <p>Rearrange the letters to unscramble the word:</p>
 
-    <!-- Add line breaks -->
-    <br>
-    <br>
-    <br>
-    <br>
+    <!-- Add Brandon's first image -->
+    <img class="brandon-image" src="/static/images/brandon.png" alt="Brandon with Puppies">
+
+    <!-- Add Brandon's second image to the left -->
+    <img class="brandon2-image" src="/static/images/brandon2.png" alt="Brandon">
 
     <!-- The scrambled word will be loaded dynamically -->
     <div id="scrambled-word">
@@ -100,12 +130,12 @@
         document.querySelector("#skip-word").addEventListener("click", playClickSound);
 
         function playClickSound() {
-            console.log("Click sound triggered"); // Log when the click sound is triggered
+            console.log("Click sound triggered");
 
             var clickSound = document.getElementById('click-sound');
 
             if (clickSound) {
-                console.log("Click sound playing..."); // Log if the audio element exists
+                console.log("Click sound playing...");
                 clickSound.play();
             } else {
                 console.error("Click sound element not found.");
@@ -115,7 +145,6 @@
         // Play the background music (already playing by default with 'autoplay')
         var backgroundMusic = document.getElementById('background-music');
 
-        // Adjust the volume when transitioning to different pages
         window.onbeforeunload = function() {
             backgroundMusic.pause();  // Pause the music if the user navigates away
         };

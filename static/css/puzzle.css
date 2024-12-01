@@ -1,5 +1,5 @@
 body {
-    background-color: #fce4ec; /* Light pink */
+    background-color: #8d64ab; /* Background color */
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
@@ -7,7 +7,8 @@ body {
     height: 100vh;
     margin: 0;
     flex-direction: column; /* Stack items vertically */
-    color: #333; /* Change text color to grey (dark grey) */
+    color: white; /* Text color updated to white */
+    position: relative; /* Allow positioning of side images */
 }
 
 h1 {
@@ -30,7 +31,7 @@ p {
 }
 
 button {
-    background-color: #f5a7c0; /* Slightly darker pink */
+    background-color: #a383bc; /* Button color */
     border: none;
     padding: 10px 20px;
     margin: 5px;
@@ -38,7 +39,7 @@ button {
 }
 
 button:hover {
-    background-color: #f27d96; /* Even darker pink on hover */
+    background-color: #b69bc8; /* Slightly lighter shade for hover effect */
 }
 
 #puzzle-container {
@@ -66,4 +67,26 @@ button:hover {
 
 #complete-message button {
     margin-top: 10px;
+}
+
+/* Side images positioning */
+.side-image {
+    position: absolute;
+    top: 50%; /* Center image vertically */
+    transform: translateY(-50%); /* Adjust for perfect vertical centering */
+    z-index: 10; /* Make sure it appears above the game board */
+}
+
+.side-image.left {
+    left: 0; /* Position on the left */
+}
+
+.side-image.right {
+    right: 0; /* Position on the right */
+}
+
+.side-image img {
+    width: 300px; /* Adjust the width to your liking */
+    height: auto;
+    border-radius: 10px; /* Optional: rounded corners */
 }

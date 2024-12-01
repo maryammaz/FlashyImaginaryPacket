@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tic Tac Toe</title>
+    <title>Chloe & Zoey's Tic-Tac-Time!</title>
     <style>
-        /* Set background color to pink and text color to white */
+        /* Set background color to #55c4c4 and text color to white */
         body {
-            background-color: pink;
+            background-color: #55c4c4;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -69,13 +69,29 @@
             border: none;
             border-radius: 5px;
         }
+
+        /* Image positioning for Chloe */
+        .chloe-image {
+            position: absolute;
+            top: 100px;
+            left: 90px;
+            max-width: 400px;
+        }
+
+        /* Image positioning for Zoey */
+        .zoey-image {
+            position: absolute;
+            top: 100px;
+            right: 90px;
+            max-width: 400px;
+        }
     </style>
 
     <!-- Include the background music script -->
     <script src="/static/js/backgroundMusic.js"></script>
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
+    <h1>Chloe & Zoey's Tic-Tac-Time!</h1>
     <p id="status_message"></p> <!-- Status message display -->
 
     <!-- Game mode selection -->
@@ -97,6 +113,12 @@
         <div class="cell"></div>
         <div class="cell"></div>
     </div>
+
+    <!-- Chloe's image -->
+    <img class="chloe-image" src="/static/images/chloe.png" alt="Chloe's Image">
+
+    <!-- Zoey's image -->
+    <img class="zoey-image" src="/static/images/zoey.png" alt="Zoey's Image">
 
     <!-- Reset button -->
     <button onclick="resetGame()">Reset Game</button>

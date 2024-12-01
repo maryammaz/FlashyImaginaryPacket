@@ -3,30 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doodle Game</title>
-    <style>
-        canvas { border: 1px solid black; }
-        #controls { margin-top: 10px; }
-    </style>
+    <title>Brianna's Scribble Showdown!</title>
     <style>
         body {
-            background-color: #FFC0CB; /* Lighter pink color */
+            background-color: #d4232b; /* Change the background color to #d4232b */
             color: white; /* Change text color to white */
+            font-family: Arial, sans-serif;
+            position: relative; /* Allow absolute positioning of side image */
         }
 
         #doodleCanvas {
             background-color: white; /* Keeps the canvas background white */
+            border: 1px solid black;
+        }
+
+        /* Side image positioning */
+        .side-image {
+            position: absolute;
+            top: 75%; /* Center the image vertically */
+            right: 500px; /* Position image on the right side */
+            transform: translateY(-50%); /* Adjust for perfect vertical centering */
+            z-index: 10; /* Make sure it appears above the game board */
+        }
+
+        .side-image img {
+            width: 400px; /* Set image width to make it large */
+            height: auto; /* Adjust height automatically */
+            border-radius: 10px; /* Optional: rounded corners */
+        }
+
+        #controls {
+            margin-top: 10px;
+        }
+
+        label {
+            margin-right: 10px;
         }
     </style>
-    
-    <script src="/static/js/backgroundMusic.js"></script>
-    
 </head>
 <body>
-    <h1>Doodle Game</h1>
+    <h1>Brianna's Scribble Showdown!</h1>
     <p id="randomTopic" style="font-size: 20px; font-weight: bold;">Your topic will appear here!</p> <!-- New topic display -->
 
     <canvas id="doodleCanvas" width="600" height="400"></canvas>
+
+    <!-- Side image -->
+    <div class="side-image">
+        <img src="/static/images/brianna.png" alt="Brianna">
+    </div>
 
     <div id="controls">
         <button onclick="clearCanvas()">Clear Canvas</button>
@@ -43,6 +67,5 @@
         <source src="/static/audio/background.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-
 </body>
 </html>

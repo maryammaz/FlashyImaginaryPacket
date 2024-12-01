@@ -1,8 +1,9 @@
 /* Background color and font styles */
 body {
-    background-color: #fce4ec; /* Very light pastel pink */
-    color: #4f4f4f; /* Dark grey text color */
+    background-color: #ea1f8f; /* Updated background color */
+    color: white; /* Changed text color to white */
     font-family: Arial, sans-serif;
+    position: relative; /* Allow absolute positioning of side image */
 }
 
 /* Game board layout */
@@ -19,7 +20,7 @@ body {
     position: relative;
     width: 80px;
     height: 120px;
-    background-color: #9b2d8a; /* Darker magenta for the cards */
+    background-color: #ef6ca9; /* Updated card color */
     border-radius: 10px;
     cursor: pointer;
     perspective: 1000px; /* This enables 3D transformations */
@@ -46,6 +47,21 @@ body {
 .card.matched {
     background-color: #95a5a6; /* Dim matched cards */
     pointer-events: none; /* Disable interactions with matched cards */
+}
+
+/* Side image positioning */
+.side-image {
+    position: absolute;
+    top: 70%;
+    right: 70px; /* Add space from the right edge */
+    transform: translateY(-50%); /* Center the image vertically */
+    z-index: 10; /* Keep the image above the game board */
+}
+
+.side-image img {
+    width: 400px; /* Set image width */
+    height: auto; /* Let the height adjust automatically */
+    border-radius: 10px; /* Optional, if you want rounded corners */
 }
 
 /* Reset button styles */
