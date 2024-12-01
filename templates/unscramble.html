@@ -8,24 +8,25 @@
         body {
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
-            background-color: #f8bbd0;
+            background-color: #23429e; /* Background color */
+            color: white; /* Set font color to white */
             padding: 20px;
         }
-        h1 { color: #333; }
+        h1 { color: white; } /* Ensure header font is white */
         .card {
             display: inline-block;
             padding: 25px; /* Increased padding to make the cards bigger */
             font-size: 36px; /* Increased font size for better visibility */
-            background-color: #f8d7da;
+            background-color: #87ceeb; /* Sky blue color for the card bubbles */
             margin: 10px; /* Increased margin between cards */
             border-radius: 8px;
             cursor: pointer;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
+            transition: transform 0.2s, background-color 0.2s;
         }
         .card:hover {
             transform: scale(1.1);
-            background-color: #f48fb1;
+            background-color: #5aa0c8; /* Darker sky blue on hover */
         }
         .result {
             margin-top: 20px;
