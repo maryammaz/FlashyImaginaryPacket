@@ -15,6 +15,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const userAnswerInput = document.querySelector("#user-answer");
     const submitButton = document.querySelector("#submit-answer");
     const skipButton = document.querySelector("#skip-word");
+    const backgroundMusic = document.getElementById("background-music");
+    const muteButton = document.getElementById("mute-button");
+
+    // Function to toggle mute
+    function toggleMute() {
+        if (backgroundMusic.muted) {
+            backgroundMusic.muted = false;
+            muteButton.textContent = "Mute";
+        } else {
+            backgroundMusic.muted = true;
+            muteButton.textContent = "Unmute";
+        }
+    }
+
+    // Attach mute toggle to the button
+    muteButton.addEventListener("click", toggleMute);
 
     // Function to scramble a word
     function scrambleWord(word) {

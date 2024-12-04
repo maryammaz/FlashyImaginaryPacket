@@ -8,7 +8,7 @@
             font-family: 'Comic Sans MS', cursive, sans-serif;
             text-align: center;
             background-color: #23429e;
-            color: white; /* Set font color to white */
+            color: white;
             padding: 20px;
         }
 
@@ -18,29 +18,24 @@
 
         .card {
             display: inline-block;
-            padding: 15px; /* Adjusted padding for smaller cards */
-            font-size: 32px; /* Adjusted font size */
-            background-color: skyblue; /* Set bubble color to sky blue */
+            padding: 15px;
+            font-size: 32px;
+            background-color: skyblue;
             margin: 10px;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
             transition: transform 0.2s;
         }
 
         .card:hover {
             transform: scale(1.1);
-            background-color: #4a90e2; /* Slightly darker blue on hover */
+            background-color: #4a90e2;
         }
 
         .result {
             margin-top: 20px;
             font-size: 20px;
-            color: green;
-        }
-
-        .incorrect {
-            color: red;
         }
 
         form {
@@ -70,7 +65,6 @@
             background-color: #45a049;
         }
 
-        /* Image positioning for Brandon */
         .brandon-image {
             position: absolute;
             top: 100px;
@@ -78,12 +72,15 @@
             max-width: 400px;
         }
 
-        /* Image positioning for second Brandon image */
         .brandon2-image {
             position: absolute;
             top: 100px;
-            left: 15px; /* Adjust the left value to move it further */
+            left: 15px;
             max-width: 400px;
+        }
+
+        #mute-button-container {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -91,16 +88,10 @@
     <h1>Dork Diary: Brandon's Brain Buster!</h1>
     <p>Rearrange the letters to unscramble the word:</p>
 
-    <!-- Add Brandon's first image -->
     <img class="brandon-image" src="/static/images/brandon.png" alt="Brandon with Puppies">
-
-    <!-- Add Brandon's second image to the left -->
     <img class="brandon2-image" src="/static/images/brandon2.png" alt="Brandon">
 
-    <!-- The scrambled word will be loaded dynamically -->
-    <div id="scrambled-word">
-        <!-- Cards will be inserted here by JavaScript -->
-    </div>
+    <div id="scrambled-word"></div>
 
     <div class="container">
         <label for="user-answer">Your Answer:</label><br><br>
@@ -111,9 +102,14 @@
 
     <div id="result"></div>
 
+    <!-- Mute Button -->
+    <div id="mute-button-container">
+        <button id="mute-button" onclick="toggleMute()">Mute</button>
+    </div>
+
     <!-- Background Music -->
     <audio id="background-music" loop autoplay>
-        <source src="/static/audio/background.mp3" type="audio/mp3">
+        <source src="/static/audio/background5.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
 
@@ -124,30 +120,5 @@
     </audio>
 
     <script src="/static/js/unscramble.js"></script>
-    <script>
-        // Play the click sound when a button is clicked
-        document.querySelector("#submit-answer").addEventListener("click", playClickSound);
-        document.querySelector("#skip-word").addEventListener("click", playClickSound);
-
-        function playClickSound() {
-            console.log("Click sound triggered");
-
-            var clickSound = document.getElementById('click-sound');
-
-            if (clickSound) {
-                console.log("Click sound playing...");
-                clickSound.play();
-            } else {
-                console.error("Click sound element not found.");
-            }
-        }
-
-        // Play the background music (already playing by default with 'autoplay')
-        var backgroundMusic = document.getElementById('background-music');
-
-        window.onbeforeunload = function() {
-            backgroundMusic.pause();  // Pause the music if the user navigates away
-        };
-    </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const audio = document.getElementById("background-music");
+    const muteButton = document.getElementById("mute-button");
+
     const gameBoard = document.querySelectorAll(".cell");
     const statusMessage = document.getElementById("status_message");
     const gameModeSelect = document.getElementById("game_mode");
@@ -96,4 +98,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Attach the resetGame function to the reset button
     document.querySelector("button").addEventListener("click", resetGame);
+
+    // Toggle mute functionality
+    window.toggleMute = () => {
+        if (audio) {
+            if (audio.muted) {
+                audio.muted = false;
+                muteButton.textContent = "Mute";
+                console.log("Unmuted background music.");
+            } else {
+                audio.muted = true;
+                muteButton.textContent = "Unmute";
+                console.log("Muted background music.");
+            }
+        }
+    };
 });
