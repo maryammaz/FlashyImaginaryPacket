@@ -1,40 +1,26 @@
+// backgroundMusic.js
+
 document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("background-music");
+    const backgroundMusic = document.getElementById("background-music");
+    const muteButton = document.getElementById("mute-button");
 
-    // Check if the audio element exists
-    if (audio) {
-        console.log("Audio element found, attempting to play...");
+    // Check for and apply the saved mute state from localStorage
+    const isMuted = localStorage.getItem("background-music-muted") === "true";
 
-        // Check if the music is already playing in localStorage
-        const isPlaying = localStorage.getItem("background-music-playing");
-
-        if (!isPlaying || isPlaying === "true") {
-            audio.volume = 1.0; // Set to full volume initially
-            audio.play().catch(err => {
-                console.error("Audio playback failed:", err);
-                alert("Audio failed to load, please check your browser's autoplay settings.");
-            });
-        }
-
-        // Save audio state in localStorage
-        audio.onplay = () => localStorage.setItem("background-music-playing", "true");
-        audio.onpause = () => localStorage.setItem("background-music-playing", "false");
-    } else {
-        console.error("Audio element not found.");
+    if (backgroundMusic) {
+        backgroundMusic.muted = isMuted; // Set the initial mute state
     }
 
-    // Volume adjustment events
-    window.addEventListener("lower-music", () => {
-        if (audio) {
-            console.log("Lowering volume to 30%");
-            audio.volume = 0.3;
-        }
-    });
+    if (muteButton) {
+        muteButton.textContent = isMuted ? "Unmute" : "Mute"; // Update button text
 
-    window.addEventListener("restore-music", () => {
-        if (audio) {
-            console.log("Restoring volume to 100%");
-            audio.volume = 1.0;
-        }
-    });
+        // Add a click event listener for mute/unmute functionality
+        muteButton.addEventListener("click", () => {
+            if (backgroundMusic) {
+                backgroundMusic.muted = !backgroundMusic.muted; // Toggle mute
+                localStorage.setItem("background-music-muted", backgroundMusic.muted); // Save state
+                muteButton.textContent = backgroundMusic.muted ? "Unmute" : "Mute"; // Update button text
+            }
+        });
+    }
 });

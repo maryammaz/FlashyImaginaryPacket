@@ -1,7 +1,5 @@
 let selectedPuzzleIndex = null;
 let currentPuzzleImage = ""; // Store the current puzzle image name
-let isMuted = false; // Variable to track mute state
-let puzzleAudio = new Audio("/static/audio/background2.mp3"); // Path to your puzzle background music
 
 function startPuzzle(puzzleNumber) {
     console.log(`Starting Puzzle ${puzzleNumber}`); // Debug log to ensure the function is triggered
@@ -72,11 +70,6 @@ function createPuzzle(imageSrc, piecesCount) {
 
         // Scramble the pieces after adding them to the container
         scramblePieces(container);
-
-        // Play puzzle sound if not muted
-        if (!isMuted) {
-            puzzleAudio.play();
-        }
     };
 
     img.onerror = () => {
@@ -116,46 +109,3 @@ function drop(e) {
     draggedPiece.style.backgroundPosition = targetPiece.style.backgroundPosition;
     targetPiece.style.backgroundPosition = tempPosition;
 }
-
-// Function to show the "Complete" message
-function showCompleteMessage() {
-    const completeMessageDiv = document.getElementById("complete-message");
-    completeMessageDiv.style.display = "block"; // Display the message
-}
-
-// Function to close the "Complete" message
-function closeCompleteMessage() {
-    const completeMessageDiv = document.getElementById("complete-message");
-    completeMessageDiv.style.display = "none"; // Hide the message
-}
-
-// Function to trigger the download of the puzzle image
-function savePuzzleImage() {
-    const imageName = currentPuzzleImage.split("/").pop(); // Extract the image file name (e.g., "dork_diaries_1.jpg")
-
-    const link = document.createElement("a");
-    link.href = currentPuzzleImage; // The image source
-    link.download = imageName; // Set the file name for downloading
-    document.body.appendChild(link);
-    link.click(); // Trigger the download
-    document.body.removeChild(link); // Remove the link after triggering download
-
-    closeCompleteMessage(); // Close the "Complete" message after saving
-}
-
-// Mute and unmute function
-function toggleMute() {
-    isMuted = !isMuted; // Toggle mute state
-    const muteButton = document.getElementById("mute-button");
-
-    if (isMuted) {
-        puzzleAudio.pause(); // Pause audio if muted
-        muteButton.textContent = "Unmute"; // Change button text to "Unmute"
-    } else {
-        puzzleAudio.play(); // Resume audio if not muted
-        muteButton.textContent = "Mute"; // Change button text to "Mute"
-    }
-}
-
-// Attach mute/unmute function to the mute button
-document.getElementById("mute-button").addEventListener("click", toggleMute);

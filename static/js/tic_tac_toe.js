@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("background-music");
-    const muteButton = document.getElementById("mute-button");
-
     const gameBoard = document.querySelectorAll(".cell");
     const statusMessage = document.getElementById("status_message");
     const gameModeSelect = document.getElementById("game_mode");
@@ -17,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Lower the music volume when entering Tic Tac Toe game
     window.addEventListener("lower-music", () => {
+        const audio = document.getElementById("background-music");
         if (audio) {
             console.log("Lowering volume to 30%");
             audio.volume = 0.3; // Lower the music volume when the game page is loaded
@@ -25,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Restore the music volume
     window.addEventListener("restore-music", () => {
+        const audio = document.getElementById("background-music");
         if (audio) {
             console.log("Restoring volume to 100%");
             audio.volume = 1.0; // Restore volume when returning to main page
@@ -98,19 +97,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Attach the resetGame function to the reset button
     document.querySelector("button").addEventListener("click", resetGame);
-
-    // Toggle mute functionality
-    window.toggleMute = () => {
-        if (audio) {
-            if (audio.muted) {
-                audio.muted = false;
-                muteButton.textContent = "Mute";
-                console.log("Unmuted background music.");
-            } else {
-                audio.muted = true;
-                muteButton.textContent = "Unmute";
-                console.log("Muted background music.");
-            }
-        }
-    };
 });

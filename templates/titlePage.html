@@ -8,43 +8,30 @@
 </head>
 <body>
     <div class="pinterest-board">
-        <h1>Welcome to Dork Diaries!</h1>
+        <h1>Welcome to our Dork Diaries Board!</h1>
+        <p class="sub-title">Click the images for a surprise!</p>
 
         <!-- Image grid -->
         <div class="grid" id="image-grid">
             <!-- Images will be added dynamically here -->
         </div>
 
-        <!-- Quote Section -->
-        <div class="quotes">
-            <blockquote>"Sometimes being a dork is the best thing ever!"</blockquote>
-            <blockquote>"Be yourself, because everyone else is taken."</blockquote>
-        </div>
 
         <!-- Button to go to Game Hub -->
         <div class="navigate">
-            <a class="button" href="/gamehub">Go to the Game Hub →</a>
+            <a class="button" href="/gamehub">Explore the Dork Diaries Game Hub! →</a>
         </div>
     </div>
 
-    <script>
-        // Array of images (without image 12)
-        const imageSources = [
-            "one.jpg", "two.jpg", "three.jpg", "four.jpg", "twenty7.jpg", "thirty1.jpg", "twenty4.jpg", "eight.jpg", "ten.jpg", "six.jpg", "nine.jpg", "five.jpg", "seven.jpg",
-            "eleven.jpg", "twenty6.jpg", "thirty3.jpg", "thirteen.jpg", "twenty8.jpg", "fourteen.jpg", "fifteen.jpg", 
-            "sixteen.jpg", "seventeen.jpg", "eighteen.jpg", "nineteen.jpg", "twenty5.jpg", 
-            "twenty.jpg", "twenty1.jpg", "thirty2.jpg", "twenty3.jpg", 
-             "twenty9.jpg"
-        ];
+    <!-- Modal for displaying quotes -->
+    <div class="modal" id="quote-modal">
+        <div class="modal-content">
+            <p id="quote-text"></p>
+            <button class="close-btn" id="close-modal">Close</button>
+        </div>
+    </div>
 
-        // Add images to the grid
-        const imageGrid = document.getElementById('image-grid');
-        imageSources.forEach(src => {
-            const img = document.createElement('img');
-            img.src = `/static/images/title_page/${src}`;
-            img.alt = `Image ${src}`;
-            imageGrid.appendChild(img);
-        });
-    </script>
+    <!-- Link to your JavaScript file -->
+    <script src="/static/js/titlePage.js"></script>
 </body>
 </html>
