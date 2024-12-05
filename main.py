@@ -8,8 +8,13 @@ board = [["" for _ in range(3)] for _ in range(3)]
 current_player = "X"
 game_mode = "two_player"
 
-# Homepage route
+# Homepage route (Title Page)
 @app.route("/")
+def title_page():
+    return render_template("titlePage.html")
+
+# Game Hub Route
+@app.route("/gamehub")
 def index():
     return render_template("mainPage.html")
 

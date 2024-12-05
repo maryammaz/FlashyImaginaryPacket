@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const gameBoard = document.getElementById("gameBoard");
     const resetButton = document.getElementById("resetButton");
     const difficultySelector = document.getElementById("difficulty");
+    const muteButton = document.getElementById("muteButton");
+    const backgroundMusic = document.getElementById("background-music");
+
     let flippedCards = [];
     let matchedCards = 0;
     let cards = [];
@@ -16,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Event listener for difficulty selection
     difficultySelector.addEventListener("change", startGame);
     resetButton.addEventListener("click", startGame);
+    muteButton.addEventListener("click", toggleMute);
 
     // Start the game
     function startGame() {
@@ -107,6 +111,17 @@ document.addEventListener("DOMContentLoaded", () => {
             [array[i], array[j]] = [array[j], array[i]]; // Swap elements
         }
         return array;
+    }
+
+    // Toggle mute on/off
+    function toggleMute() {
+        if (backgroundMusic.muted) {
+            backgroundMusic.muted = false;
+            muteButton.textContent = "Mute"; // Change button text back to "Mute"
+        } else {
+            backgroundMusic.muted = true;
+            muteButton.textContent = "Unmute"; // Change button text to "Unmute"
+        }
     }
 
     // Start the game with the default difficulty

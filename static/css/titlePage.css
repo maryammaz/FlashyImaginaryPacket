@@ -1,0 +1,86 @@
+/* General styles for the page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.pinterest-board {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Title style */
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/* Image grid layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
+    gap: 15px; /* Consistent space between images */
+    margin-bottom: 30px;
+}
+
+/* Individual image styling */
+.grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    object-fit: cover;  /* Ensures images fill their grid cells nicely without distortion */
+}
+
+/* Hover effect for images */
+.grid img:hover {
+    transform: scale(1.1);
+}
+
+/* Quote Section Styles */
+.quotes {
+    margin-top: 30px;
+    font-style: italic;
+}
+
+.quotes blockquote {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Button Styles */
+.navigate {
+    margin-top: 30px;
+}
+
+.navigate .button {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navigate .button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive design: For smaller screens */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for very small screens */
+    }
+}
