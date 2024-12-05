@@ -13,16 +13,25 @@ body {
 
 /* Title style */
 h1 {
-    font-size: 36px;
+    font-size: 48px;
     margin-bottom: 20px;
     color: #000080
+}
+
+/* Styling for the welcome message */
+.welcome-message {
+    font-size: 42px; /* Make the font size larger */
+    color: #2F5078 ; /* Light navy blue */
+    font-weight: bold; /* Make the text bold */
+    margin-top: 10px; /* Optional: Add spacing around the text */
+    text-align: center; /* Optional: Align text to the center */
 }
 
 /* Subtitle style */
 .sub-title {
     font-size: 18px; /* Smaller font size */
     color: #5F6A97; /* A subtle blue color */
-    margin-top: 10px;
+    margin-top: 5px;
     font-weight: bold;
 }
 
