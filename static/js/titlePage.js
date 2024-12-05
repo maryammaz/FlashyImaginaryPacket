@@ -9,12 +9,12 @@ const imageSources = [
 
 // Array of quotes corresponding to each image
 const quotes = [
-    "OMG! Who even writes stuff like this in their diary?!",
+    "The fastest way to someone's heart is their diary ;) You never know what you might find along the way...",
     "Sometimes all you need is a cute puppy and your blanket.",
     "Good friends are like stars – you don’t always see them, but you know they’re always there.",
-    "Don’t try to be perfect; just be real.",
+    "Don’t try to be perfect; just be authentic to yourself.",
     "I’m not a nerd, I’m a unique blend of weird and awesome.",
-    "When life gives you lemons, make lemonade. Or just throw them at people. You could always just grab a mic too.",
+    "When life gives you lemons, make lemonade. Or just throw them at people. You could always just grab a mic and wing it too.",
     "Sometimes all you need is a little adventure to find yourself.",
     "It’s not about fitting in; it’s about standing out.",
     "Confidence is the best accessory. Rock it and own it! Especially if it's your birthday!",

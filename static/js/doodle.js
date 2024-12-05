@@ -3,14 +3,11 @@ const ctx = canvas.getContext('2d');
 const brushSizeInput = document.getElementById('brushSize');
 const brushColorInput = document.getElementById('brushColor');
 const topicDisplay = document.getElementById('randomTopic');
-const muteButton = document.getElementById('muteButton');
-const backgroundMusic = document.getElementById('background-music');
 
 let isDrawing = false;
 let doodleCount = 0;
-let isMuted = false;  // Track mute state
 
-// Function to generate random topic
+// Function to generate a random topic
 function generateRandomTopic() {
     const topics = [
         "A pink scarf", "A heart-shaped balloon", "A blue lunchbox", "A red pencil sharpener",
@@ -24,10 +21,10 @@ function generateRandomTopic() {
         "A watermelon slice", "A sparkly necklace"
     ];
     const randomIndex = Math.floor(Math.random() * topics.length);
-    const randomTopic = topics[randomIndex];
-    topicDisplay.textContent = `Your topic: ${randomTopic}`;
+    topicDisplay.textContent = `Your topic: ${topics[randomIndex]}`;
 }
 
+// Canvas event listeners for drawing
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', stopDrawing);
@@ -59,19 +56,11 @@ function clearCanvas() {
 }
 
 function saveDoodle() {
-    doodleCount += 1;
+    doodleCount++;
     const dataUrl = canvas.toDataURL('image/png');
     const link = document.createElement('a');
     link.href = dataUrl;
-    link.download = 'doodle.png';
+    link.download = `doodle_${doodleCount}.png`;
     link.click();
     clearCanvas();
 }
-
-// Mute button functionality
-muteButton.addEventListener('click', () => {
-    console.log("Mute button clicked");
-    isMuted = !isMuted;
-    backgroundMusic.muted = isMuted;
-    muteButton.textContent = isMuted ? "Unmute Music" : "Mute Music"; // Update button text
-});

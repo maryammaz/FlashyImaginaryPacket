@@ -6,30 +6,29 @@
     <title>Brianna's Scribble Showdown!</title>
     <style>
         body {
-            background-color: #d4232b; /* Change the background color to #d4232b */
-            color: white; /* Change text color to white */
+            background-color: #d4232b;
+            color: white;
             font-family: Arial, sans-serif;
-            position: relative; /* Allow absolute positioning of side image */
+            position: relative;
         }
 
         #doodleCanvas {
-            background-color: white; /* Keeps the canvas background white */
+            background-color: white;
             border: 1px solid black;
         }
 
-        /* Side image positioning */
         .side-image {
             position: absolute;
-            top: 75%; /* Center the image vertically */
-            right: 270px; /* Position image on the right side */
-            transform: translateY(-50%); /* Adjust for perfect vertical centering */
-            z-index: 10; /* Make sure it appears above the game board */
+            top: 75%;
+            right: 270px;
+            transform: translateY(-50%);
+            z-index: 10;
         }
 
         .side-image img {
-            width: 400px; /* Set image width to make it large */
-            height: auto; /* Adjust height automatically */
-            border-radius: 10px; /* Optional: rounded corners */
+            width: 400px;
+            height: auto;
+            border-radius: 10px;
         }
 
         #controls {
@@ -40,13 +39,12 @@
             margin-right: 10px;
         }
 
-        /* Mute button style */
         #muteButton {
             display: block;
             margin: 10px auto;
             padding: 10px 20px;
             font-size: 16px;
-            background-color: #f8c8d0; /* Light pastel pink */
+            background-color: #f8c8d0;
             color: white;
             border: none;
             border-radius: 8px;
@@ -55,17 +53,16 @@
         }
 
         #muteButton:hover {
-            background-color: #ff66b2; /* Slightly darker pink on hover */
+            background-color: #ff66b2;
         }
     </style>
 </head>
 <body>
     <h1>Brianna's Scribble Showdown!</h1>
-    <p id="randomTopic" style="font-size: 20px; font-weight: bold;">Your topic will appear here!</p> <!-- New topic display -->
+    <p id="randomTopic" style="font-size: 20px; font-weight: bold;">Your topic will appear here!</p>
 
     <canvas id="doodleCanvas" width="600" height="400"></canvas>
 
-    <!-- Side image -->
     <div class="side-image">
         <img src="/static/images/brianna.png" alt="Brianna">
     </div>
@@ -73,22 +70,23 @@
     <div id="controls">
         <button onclick="clearCanvas()">Clear Canvas</button>
         <button onclick="saveDoodle()">Save Doodle</button>
-        <button onclick="generateRandomTopic()">Generate Random Topic</button> <!-- New button -->
+        <button onclick="generateRandomTopic()">Generate Random Topic</button>
         <br>
         <label>Brush Size: <input type="range" id="brushSize" min="1" max="10" value="5"></label>
         <label>Brush Color: <input type="color" id="brushColor" value="#000000"></label>
-        
+
         <!-- Mute Button -->
         <div id="mute-button-container">
-            <button id="mute-button" onclick="toggleMute()">Mute</button>
+            <button id="mute-button">Mute</button>
         </div>
+    </div>
 
-    <script src="{{ url_for('static', filename='js/doodle.js') }}"></script>
-    
     <audio id="background-music" loop autoplay>
         <source src="/static/audio/background6.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
+    <script src="{{ url_for('static', filename='js/doodle.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/backgroundMusic.js') }}"></script>
 </body>
 </html>
